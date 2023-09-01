@@ -26,30 +26,30 @@ const StyledLink = styled(Link)`
 `
 
 const Links = [
-  {
-    title: 'Shop',
-    href: '',
-  },
+  // {
+  //   title: 'Shop',
+  //   href: '',
+  // },
   {
     title: 'Club',
-    href: '',
+    href: '#club',
   },
+  // {
+  //   title: 'Schedule',
+  //   href: '#club',
+  // },
   {
     title: 'Roster',
-    href: '',
+    href: '#club',
   },
-  {
-    title: 'Schedule',
-    href: '',
-  },
-  {
-    title: 'Press',
-    href: '',
-  },
-  {
-    title: 'Community',
-    href: '',
-  },
+  // {
+  //   title: 'Press',
+  //   href: '',
+  // },
+  // {
+  //   title: 'Community',
+  //   href: '',
+  // },
 ]
 
 export const NavigationComponent = (props: any): JSX.Element => {
@@ -80,8 +80,8 @@ export const NavigationComponent = (props: any): JSX.Element => {
   }, [Links])
 
   return (
-    <Box sx={{ zIndex: 100 }}>
-      <BannerComponent />
+    <Box sx={{ zIndex: 100, position: 'relative', top: 0 }}>
+      {/* <BannerComponent /> */}
       <Header
         height={60}
         // p="xs"
@@ -143,7 +143,7 @@ export const NavigationComponent = (props: any): JSX.Element => {
                   >
                     <StaticImage
                       src="../../images/logo/timbers_sc.logo.black.no_padding.png"
-                      alt="Random image"
+                      alt="Logo"
                       height={68}
                     />
                   </Box>
@@ -177,7 +177,7 @@ export const NavigationComponent = (props: any): JSX.Element => {
         >
           <StaticImage
             src="../../images/logo/timbers_sc.logo.black.no_padding.png"
-            alt="Random image"
+            alt="Logo"
             height={124}
           />
         </Box>

@@ -5,6 +5,13 @@ import { StaticImage } from 'gatsby-plugin-image'
 
 import { Box, Overlay, useMantineTheme } from '@mantine/core'
 
+import {
+  ClubComponent,
+  RosterComponent,
+  ScheduleComponent,
+} from '../components/index'
+// import { Layout } from '../components/Layout/Layout'
+
 const IndexPage: React.FC<PageProps> = () => {
   const theme = useMantineTheme()
 
@@ -45,7 +52,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </Box>
 
         {/* Featured news */}
-        <Box
+        {/* <Box
           sx={{
             position: 'absolute',
             top: '50%',
@@ -60,10 +67,10 @@ const IndexPage: React.FC<PageProps> = () => {
           }}
         >
           MIDDLE
-        </Box>
+        </Box> */}
 
         {/* Other news, 3 more? */}
-        <Box
+        {/* <Box
           sx={{
             position: 'absolute',
             maxWidth: '812px',
@@ -78,7 +85,29 @@ const IndexPage: React.FC<PageProps> = () => {
             border: `1px solid ${theme.colors.gold[0]}`,
             borderRadius: '0.25em',
           }}
-        ></Box>
+        ></Box> */}
+      </Box>
+      <Box>
+        <Box>
+          <ClubComponent />
+        </Box>
+        {/* <Box>
+          <ScheduleComponent />
+        </Box> */}
+        <Box
+          sx={{
+            backgroundColor: theme.colors.evergreen[0],
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            boxShadow: theme.shadows.lg,
+            '*': {
+              flex: 1,
+            },
+          }}
+        >
+          <RosterComponent />
+        </Box>
       </Box>
     </Box>
   )
