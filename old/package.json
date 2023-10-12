@@ -1,0 +1,26 @@
+{
+  "name": "timberssc.org",
+  "version": "1.0.0",
+  "description": "Timbers Soccer Club official website.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lerna run develop --parallel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimbersSC/timberssc.org.git"
+  },
+  "author": "mpodsiadly@feant.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimbersSC/timberssc.org/issues"
+  },
+  "homepage": "https://github.com/TimbersSC/timberssc.org#readme",
+  "workspaces": [
+    "frontend/*",
+    "backend/*"
+  ],
+  "devDependencies": {
+    "lerna": "^6.4.1"
+  }
+}

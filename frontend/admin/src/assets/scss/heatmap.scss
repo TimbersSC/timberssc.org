@@ -1,0 +1,121 @@
+@mixin dark-theme {
+  --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+  --color-calendar-halloween-graph-day-L1-bg: #631c03;
+  --color-calendar-halloween-graph-day-L2-bg: #bd561d;
+  --color-calendar-halloween-graph-day-L3-bg: #fa7a18;
+  --color-calendar-halloween-graph-day-L4-bg: #fddf68;
+  --color-calendar-graph-day-bg: var(--color-scale-gray-8);
+  --color-calendar-graph-day-border: rgba(27, 31, 35, 0.06);
+  --color-calendar-graph-day-L1-bg: #0e4429;
+  --color-calendar-graph-day-L2-bg: #006d32;
+  --color-calendar-graph-day-L3-bg: #26a641;
+  --color-calendar-graph-day-L4-bg: #39d353;
+  --color-calendar-graph-day-L1-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L2-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L3-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L4-border: rgba(255, 255, 255, 0.05);
+}
+
+@mixin light-theme {
+   --color-calendar-halloween-graph-day-L1-bg: #ffee4a;
+   --color-calendar-halloween-graph-day-L2-bg: #ffc501;
+   --color-calendar-halloween-graph-day-L3-bg: #fe9600;
+   --color-calendar-halloween-graph-day-L4-bg: #03001c;
+   --color-calendar-graph-day-bg: #ebedf0;
+   --color-calendar-graph-day-border: rgba(27, 31, 35, 0.06);
+   --color-calendar-graph-day-L1-bg: #9be9a8;
+   --color-calendar-graph-day-L2-bg: #40c463;
+   --color-calendar-graph-day-L3-bg: #30a14e;
+   --color-calendar-graph-day-L4-bg: #216e39;
+   --color-calendar-graph-day-L1-border: rgba(27, 31, 35, 0.06);
+   --color-calendar-graph-day-L2-border: rgba(27, 31, 35, 0.06);
+   --color-calendar-graph-day-L3-border: rgba(27, 31, 35, 0.06);
+   --color-calendar-graph-day-L4-border: rgba(27, 31, 35, 0.06);
+ }
+
+@media (prefers-color-scheme: dark) {
+   [data-color-mode=auto][data-dark-theme*=dark] {
+      @include dark-theme;
+   }
+
+}
+
+[data-color-mode="light"][data-light-theme*="dark"],
+[data-color-mode="dark"][data-dark-theme*="dark"] {
+   @include dark-theme;
+}
+
+@media (prefers-color-scheme: light) {
+   [data-color-mode=auto][data-light-theme*="light"] {
+      @include light-theme;
+   }
+
+}
+[data-color-mode="light"][data-light-theme*="light"],
+[data-color-mode="dark"][data-dark-theme*="light"] {
+   @include light-theme
+}
+
+text.month-name,
+text.calendar-contributions-map-legend-text,
+text.day-initial {
+  font-size: 11px;
+  fill: var(--color-fg-default);
+}
+
+.KarmaCalendar-day,
+.KarmaCalendar-day[data-level="0"] {
+  fill: var(--color-calendar-graph-day-bg);
+  shape-rendering: geometricPrecision;
+  outline: 1px solid var(--color-calendar-graph-day-border);
+  outline-offset: -1px;
+}
+
+.KarmaCalendar-day[data-level="1"] {
+  fill: var(--color-calendar-graph-day-L1-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L1-border);
+}
+
+.KarmaCalendar-day[data-level="2"] {
+  fill: var(--color-calendar-graph-day-L2-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L2-border);
+}
+
+.KarmaCalendar-day[data-level="3"] {
+  fill: var(--color-calendar-graph-day-L3-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L3-border);
+}
+
+.KarmaCalendar-day[data-level="4"] {
+  fill: var(--color-calendar-graph-day-L4-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L4-border);
+}
+
+rect.day-cell:hover {
+  stroke: #555;
+  stroke-width: 1px;
+}
+
+.day-cell-tooltip {
+  position: absolute;
+  z-index: 9999;
+  padding: 5px 9px;
+  color: #bbb;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 3px;
+  text-align: center;
+}
+
+.day-cell-tooltip > span {
+  font-family: Helvetica, arial, "Open Sans", sans-serif;
+}
+
+.calendar-contributions-map {
+  box-sizing: initial;
+}
+
+svg {
+  overflow: visible !important;
+}
