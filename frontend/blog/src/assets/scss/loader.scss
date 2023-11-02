@@ -1,0 +1,147 @@
+$diameter-dot-red: 84px; // Adjusts size of entire loader.
+
+// Size calculations based on Branding guidelines. Please adjust using original vector file.
+$diameter-dot-blue: $diameter-dot-red * 1.842;
+$diameter-dot-green: $diameter-dot-red * 1.473;
+
+$diameter-orbit: $diameter-dot-blue * 2;
+
+// This allows for the orbits to be ellipses and not circles.
+$loader-rotation: rotateX(60deg);
+
+$red-brand: #ff7b72;
+$red-shadow: #da3633;
+$blue-brand: #58a6ff;
+$blue-shadow: #1f6feb;
+$green-brand: #3fb950;
+$green-shadow: #238636;
+
+@mixin animationSettings() {
+   transform-style: preserve-3d;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in-out;
+   animation-duration: 6s;
+   animation-direction: normal;
+}
+
+@mixin absoluteCenter() {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+}
+
+@mixin centerOnSize($sizeVal) {
+   width: $sizeVal;
+   height: $sizeVal;
+   margin-left: calc(-1 * $sizeVal / 2);
+   margin-top: calc(-1 * $sizeVal / 2);
+}
+
+.loader-wrapper {
+   visibility: visible;
+   opacity: 1;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   transition: opacity 0.24s ease-in-out;
+}
+
+.loader {
+   width: 100%;
+   height: 100%;
+   transform-style: preserve-3d;
+   transform: $loader-rotation;
+}
+
+.orb {
+   @include absoluteCenter();
+   border-radius: 50%;
+   transform: rotateX(-60deg);
+
+   &-red {
+      @include centerOnSize($diameter-dot-red);
+      background: radial-gradient(
+         farthest-corner at 0 0,
+         $red-brand,
+         $red-shadow
+      );
+      box-shadow: 0 0 64px #f85149;
+   }
+
+   &-green {
+      @include centerOnSize($diameter-dot-green);
+      background: radial-gradient(
+         farthest-corner at 0 0,
+         $green-brand,
+         $green-shadow
+      );
+      box-shadow: 0 0 64px #2ea043;
+   }
+
+   &-blue {
+      @include centerOnSize($diameter-dot-blue);
+      background: radial-gradient(
+         farthest-corner at 0 0,
+         $blue-brand,
+         $blue-shadow
+      );
+      box-shadow: 0 0 64px #388bfd;
+   }
+}
+
+.orbit {
+   @include absoluteCenter();
+   @include animationSettings();
+   @include centerOnSize($diameter-orbit);
+   border-radius: 50%;
+
+   &-red {
+      animation-name: orbit-red;
+   }
+
+   &-green {
+      animation-name: orbit-green;
+   }
+}
+
+.pos {
+   position: absolute;
+   @include animationSettings();
+
+   &-red {
+      animation-name: realign-red;
+      left: 70%;
+      top: 0%;
+   }
+
+   &-green {
+      animation-name: realign-green;
+      left: 60%;
+      top: 110%;
+   }
+}
+
+@keyframes orbit-red {
+   100% {
+      transform: rotate3D(0.35, 0.1, -0.4, 1080deg);
+   }
+}
+
+@keyframes orbit-green {
+   100% {
+      transform: rotate3D(-0.75, 0.1, -0.25, -1080deg);
+   }
+}
+
+@keyframes realign-red {
+   100% {
+      transform: rotate3D(-0.35, -0.1, 0.5, 1080deg);
+   }
+}
+
+@keyframes realign-green {
+   100% {
+      transform: rotate3D(0.75, -0.1, 0.25, -1080deg);
+   }
+}

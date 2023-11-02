@@ -1,26 +1,34 @@
 {
-  "name": "timberssc.org",
+  "private": true,
+  "name": "blog",
   "version": "1.0.0",
-  "description": "Timbers Soccer Club official website.",
+  "description": "<a alt=\"Nx logo\" href=\"https://nx.dev\" target=\"_blank\" rel=\"noreferrer\"><img src=\"https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png\" width=\"45\"></a>",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lerna run develop --parallel"
+    "start": "npx lerna run start --parallel"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TimbersSC/timberssc.org.git"
+    "url": "git+https://github.com/TheFerant/Blog.git"
   },
-  "author": "mpodsiadly@feant.io",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TimbersSC/timberssc.org/issues"
+    "url": "https://github.com/TheFerant/Blog/issues"
   },
-  "homepage": "https://github.com/TimbersSC/timberssc.org#readme",
-  "workspaces": [
-    "frontend/*",
-    "backend/*"
-  ],
+  "homepage": "https://github.com/TheFerant/Blog#readme",
   "devDependencies": {
-    "lerna": "^6.4.1"
+    "husky": "^8.0.3",
+    "lerna": "^6.4.1",
+    "prettier": "^2.8.8",
+    "pretty-quick": "^3.1.3"
+  },
+  "workspaces": [
+    "frontend/blog",
+    "backend/blog"
+  ],
+  "dependencies": {
+    "react-transition-group": "^4.4.5"
   }
 }

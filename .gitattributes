@@ -2,3 +2,5 @@
 *.js text eol=lf
 *.py text eol=lf
 * text=auto eol=lf
+protos/* linguist-generated
+**/api-extractor.json  linguist-language=JSON-with-Comments

@@ -1,0 +1,30 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      ":shared/*": [
+        "../../../libs/production/*"
+      ],
+      ":api/services/*": [
+        "src/services/*"
+      ],
+      ":api/utils/*": [
+        "src/utils/*",
+      ],
+      ":api/utils": [
+        "src/utils/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "tests/**/*",
+    "node_modules/**/*"
+  ],
+}

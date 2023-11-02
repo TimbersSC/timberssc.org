@@ -1,0 +1,103 @@
+service: ${file(./package.json):name}
+
+useDotenv: true
+
+plugins:
+  - serverless-dotenv-plugin
+  # - serverless-webpack
+  - serverless-domain-manager
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  timeout: 300
+  stage: ${opt:stage, 'dev'}
+  region: us-east-2
+  deploymentBucket:
+    name: ${file(./package.json):service}-api-backend-deployments
+    maxPreviousDeploymentArtifacts: 10
+  role: arn:aws:iam::118413956685:role/${env:SERVICE}-${env:API}-${env:VERSION}
+  environment:
+    ENV: ${self:provider.stage}
+
+package:
+  individually: false
+  patterns:
+    - '!./**'
+    - 'src/**'
+
+functions:
+  main:
+    name: ${file(./package.json):service}-${file(./package.json):name}-api-${self:provider.stage}
+    description: ${file(./package.json):version}
+    handler: src/handler.serve
+    events:
+      - http:
+          path: /
+          method: OPTIONS
+          cors: ${self:custom.corsProperty}
+      - http:
+          path: /
+          method: ANY
+          cors: ${self:custom.corsProperty}
+      - http:
+          path: '{proxy+}'
+          method: ANY
+          cors: ${self:custom.corsProperty}
+
+resources:
+  Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
+
+custom:
+  serverless-offline:
+    useChildProcesses: true
+    noPrependStageInUrl: true
+    httpPort: 5678
+    lambdaPort: 5679
+    reloadHandler: true
+  # webpack:
+  #   webpackConfig: 'webpack.config.js' # Name of webpack configuration file
+  #   includeModules: false # Node modules configuration for packaging
+  #   packager: 'npm' # Packager that will be used to package your external modules
+  #   excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
+  dev_domain:
+    domainName: dev-api.${file(./package.json):service}.ferant.io
+  prod_domain:
+    domainName: api.${file(./package.json):service}.ferant.io
+  customDomain:
+    domainName: ${self:custom.${self:provider.stage}_domain.domainName}
+    basePath: ${file(./package.json):name}
+    stage: ${self:provider.stage}
+  dev_corsDomain: '*'
+  prod_corsDomain: '*.ferant.io'
+  corsProperty:
+    # origin: ${self:custom.${self:provider.stage}_corsDomain} # <-- Specify allowed origin
+    origin: '*'
+    headers: # <-- Specify allowed headers
+      - Content-Type
+      - X-Amz-Date
+      - Authorization
+      - X-Api-Key
+      - X-Amz-Security-Token
+      - X-Amz-User-Agent
+      - X-F-Api-Key
+      - X-F-Id
+      - X-Forwarded-Proto
+    allowCredentials: false
+  authorizer:
+    name: warden-firewall
+    arn: arn:aws:lambda:us-east-2:118413956685:function:warden-api-firewall-prod-firewall
+    resultTtlInSeconds: 0
+    identitySource: method.request.header.Authorization
+    identityValidationExpression: ^(Bearer )[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)$
+    type: token
