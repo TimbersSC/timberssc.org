@@ -22,8 +22,6 @@ export const LayoutComponent = () => {
     .querySelector('html')
     ?.setAttribute('style', `background-color: ${theme.colors.canvas.default}`);
 
-  // @TODO fetch feature flags
-
   // Breadcrumbs context
   const [breadcrumbs, breadcrumbsDispatch] = useReducer(
     breadcrumbsReducer,

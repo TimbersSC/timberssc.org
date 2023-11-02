@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "allowJs": true,
+    "allowJs": false,
     "target": "ES6",
     "module": "ESNext",
     "lib": [
@@ -14,7 +14,7 @@
     "esModuleInterop": false,
     "noImplicitAny": true,
     "sourceMap": true,
-    "baseUrl": "./",
+    "baseUrl": "",
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

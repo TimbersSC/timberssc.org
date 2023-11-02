@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
-import { Header, useTheme, Text } from '@primer/react';
+import { Header, useTheme, Text, Box } from '@primer/react';
 import { rgba } from 'polished';
 
-import { SearchComponent } from './search';
-import { NotificationsComponent } from './notifications';
+import { SubscribeComponent } from './subscribe';
 import { Breadcrumbs } from './breadcrumbs';
+import logo from '@public/images/logos/timbers_sc.logo.black.png';
 
 import { NavLinks } from './menu/nav';
 
@@ -18,62 +18,93 @@ export const NavigationComponent = () => {
         position: 'sticky',
         top: 0,
         width: '100%',
-        boxShadow: theme.shadows.shadow.medium,
+        boxSizing: 'border-box',
+        boxShadow: 'shadow.medium',
         backdropFilter: 'saturate(190%) blur(10px)',
         backgroundColor: rgba(theme.colors.canvas.inset, 1),
         borderBottom: `1px solid ${rgba(theme.colors.border.subtle, 0.1)}`,
+        py: [1, 2],
+        height: '60px',
       }}
     >
-      <Header.Item>
+      <Header.Item sx={{ display: ['none', 'flex'] }}>
         <NavLinks />
       </Header.Item>
-      <Header.Item sx={{ mr: '1.5rem' }}>
-        <Link to='//ferant.io' key='logo-link' style={{ lineHeight: 0 }}>
-          <img
-            src='//cdn.ferant.io/branding/logo-symbol.png'
-            alt='Ferant logomark'
-            height='32'
-          />
-        </Link>
-        <Text
-          as='span'
+      <Header.Item
+        sx={{
+          mr: '1.5rem',
+          width: ['100%', 'auto'],
+        }}
+      >
+        <Box
           sx={{
-            fontSize: '2rem',
-            mx: '0.5rem',
-            opacity: 0.25,
+            height: '60px',
           }}
         >
-          /
-        </Text>
+          <Link to='//timberssc.org' key='logo-link' style={{ lineHeight: 0 }}>
+            <Box
+              as='img'
+              src={logo}
+              alt='Timbers SC logo'
+              height='108'
+              sx={{
+                display: 'block',
+                bg: 'black',
+                pt: 1,
+                px: 2,
+                pb: 2,
+                borderRadius: '0 0 40px 40px',
+              }}
+            />
+          </Link>
+        </Box>
         <Text
           as={Link}
           to={'/'}
           sx={{
+            ml: '0.5rem',
             width: 'auto',
             color: 'fg.default',
             transition: 'opacity 0.25s ease',
-            fontSize: '1.25rem',
+            fontSize: [2, '1.25rem'],
+            fontWeight: 500,
             ':hover': {
               opacity: 0.6,
             },
           }}
         >
-          Discovery
+          Timbers SC
+        </Text>
+        <Text
+          as={Link}
+          to={'/'}
+          sx={{
+            display: ['none', 'flex'],
+            mx: '0.5rem',
+            width: 'auto',
+            color: 'fg.default',
+            transition: 'opacity 0.25s ease',
+            fontSize: 1,
+            ':hover': {
+              opacity: 0.6,
+            },
+          }}
+        >
+          | Official Timbers Website
         </Text>
       </Header.Item>
-      <Header.Item sx={{ color: 'fg.default' }} full>
+      <Header.Item sx={{ display: ['none', 'flex'], color: 'fg.default' }} full>
         <Breadcrumbs></Breadcrumbs>
       </Header.Item>
-      <Header.Item>
-        <SearchComponent />
+      <Header.Item
+        sx={{
+          display: ['none', 'flex'],
+        }}
+      >
+        <SubscribeComponent />
       </Header.Item>
-      <Header.Item sx={{ color: 'fg.subtle', lineHeight: 0 }}>|</Header.Item>
-      {/* <Header.Item>
-        <ActionsComponent />
-      </Header.Item> */}
-      <Header.Item>
-        {/* @TODO: Subscribe button */}
-        <NotificationsComponent />
+      <Header.Item sx={{ display: ['flex', 'none'] }}>
+        <NavLinks />
       </Header.Item>
     </Header>
   );

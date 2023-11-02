@@ -2,18 +2,20 @@ import type { RouteObject } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import matter from 'gray-matter';
 
-import { InboxIcon, TelescopeIcon, LogIcon } from '@primer/octicons-react';
-
-import { SHORTCUTS } from '../data';
-import Config from '@config';
+import {
+  TrophyIcon,
+  CalendarIcon,
+  PeopleIcon,
+  GlobeIcon,
+} from '@primer/octicons-react';
 
 import { NoMatch } from '../../features/404';
 
-import { OverviewPage } from '../../features/overview/overview';
-import { CategoryPage } from '../../features/category';
-import { PostPage } from '../../features/category/post';
-import { ChangelogPage } from '../../features/changelog';
-import { ChangelogPostPage } from '../../features/changelog/post';
+import { OverviewPage } from '../../features/overview';
+import { ClubPage } from '../../features/club';
+import { FirstTeamPage } from '../../features/firstTeam';
+import { PartnersPage } from '../../features/partners';
+import { SchedulePage } from '../../features/schedule';
 
 interface ExtraRouteOptions {
   displayNav?: boolean;
@@ -31,44 +33,34 @@ export const routes: CustomRouteOptions[] = [
     element: <OverviewPage />,
     name: 'Overview',
     displayNav: false,
-    hotKey: SHORTCUTS.navigation.dashboard.sequence,
   },
   {
-    path: '/changelog',
-    name: 'Changelog',
+    path: '/club',
+    name: 'Club',
     displayNav: true,
-    icon: <LogIcon />,
-    element: <ChangelogPage />,
-    loader: async ({ params }: any) => {
-      return fetch(`${Config.app.URL}/changelog/latest`);
-    },
+    icon: <TrophyIcon />,
+    element: <ClubPage />,
   },
   {
-    path: '/changelog/:postId',
-    name: 'Changelog Post',
-    element: <ChangelogPostPage />,
-    loader: async ({ params }: any) => {
-      const res = await fetch(`${Config.app.URL}/changelog/${params.postId}`);
-      if (res) {
-        return res;
-      }
-    },
+    path: '/first-team',
+    name: 'First team',
+    displayNav: true,
+    icon: <PeopleIcon />,
+    element: <FirstTeamPage />,
   },
   {
-    path: '/:categoryId',
-    name: 'Category',
-    element: <CategoryPage />,
-    loader: async ({ params }: any) => {
-      return fetch(`${Config.app.URL}/${params.categoryId}`);
-    },
+    path: '/partners',
+    name: 'Partners',
+    displayNav: true,
+    icon: <GlobeIcon />,
+    element: <PartnersPage />,
   },
   {
-    path: '/:categoryId/:postId',
-    name: 'Post',
-    element: <PostPage />,
-    loader: async ({ params }: any) => {
-      return fetch(`${Config.app.URL}/${params.categoryId}/${params.postId}`);
-    },
+    path: '/schedule',
+    name: 'Schedule',
+    displayNav: true,
+    icon: <CalendarIcon />,
+    element: <SchedulePage />,
   },
   {
     path: '*',

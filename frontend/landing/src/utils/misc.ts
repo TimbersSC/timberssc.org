@@ -98,5 +98,5 @@ export const setDocumentTitle = (title: string | string[] | void) => {
     newTitle = `${title} · `;
   }
 
-  document.title = `${newTitle}Ferant`;
+  document.title = `${newTitle}Timbers SC`;
 };

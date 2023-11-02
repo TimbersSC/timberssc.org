@@ -33,7 +33,7 @@ export const Breadcrumbs = () => {
           marginLeft: '0.5rem',
         }}
       >
-        {greeting()}, adventurer!
+        {greeting()}, Timbers fan!
       </Text>
     );
   }
