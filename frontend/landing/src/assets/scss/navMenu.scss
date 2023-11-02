@@ -1,0 +1,41 @@
+.nav-menu-enter,
+.nav-menu-exit-active {
+  opacity: 0;
+  .nav-menu-content-left {
+    left: -450px;
+  }
+  .nav-menu-content-right {
+    right: -450px;
+  }
+}
+
+.nav-menu-enter-active,
+.nav-menu-enter-done {
+  opacity: 1 !important;
+  .nav-menu-content-left {
+    left: 0 !important;
+  }
+  .nav-menu-content-right {
+    right: 0 !important;
+  }
+}
+
+.nav-menu-exit {
+  opacity: 1;
+  .nav-menu-content-left {
+    left: 0;
+  }
+  .nav-menu-content-right {
+    right: 0;
+  }
+}
+
+.nav-menu-exit-active {
+  opacity: 0 !important;
+  .nav-menu-content-left {
+    left: -450px !important;
+  }
+  .nav-menu-content-right {
+    right: -450px !important;
+  }
+}

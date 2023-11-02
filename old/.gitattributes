@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 * text=auto eol=lf
+=======
+*.ts text eol=lf
+*.js text eol=lf
+*.py text eol=lf
+* text=auto eol=lf
+>>>>>>> 5a0aec9789185992a072431e63301e1b3c334a20

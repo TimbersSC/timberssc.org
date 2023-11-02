@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
 
-import { StaticImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+import { StaticImage } from 'gatsby-plugin-image'
+import { Link } from 'gatsby'
 
-import { rgba } from "polished";
-import styled from "@emotion/styled";
+import { rgba } from 'polished'
+import styled from '@emotion/styled'
 
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure } from '@mantine/hooks'
 import {
   useMantineTheme,
   Drawer,
@@ -15,48 +15,46 @@ import {
   Image,
   NavLink,
   Box,
-} from "@mantine/core";
+  Overlay,
+} from '@mantine/core'
 
-import { BannerComponent } from "./banner";
-import { BreadcrumbsComponent } from "./breadcrumbs";
+import { BannerComponent } from './banner'
+import { BreadcrumbsComponent } from './breadcrumbs'
 
 const StyledLink = styled(Link)`
-  color: white;
   text-decoration: none;
-`;
+`
 
 const Links = [
+  // {
+  //   title: 'Shop',
+  //   href: '',
+  // },
   {
-    title: "Shop",
-    href: "",
+    title: 'Club',
+    href: '#club',
   },
+  // {
+  //   title: 'Schedule',
+  //   href: '#club',
+  // },
   {
-    title: "Club",
-    href: "",
+    title: 'Roster',
+    href: '#club',
   },
-  {
-    title: "Roster",
-    href: "",
-  },
-  {
-    title: "Schedule",
-    href: "",
-  },
-  {
-    title: "Press",
-    href: "",
-  },
-  {
-    title: "Community",
-    href: "",
-  },
-];
+  // {
+  //   title: 'Press',
+  //   href: '',
+  // },
+  // {
+  //   title: 'Community',
+  //   href: '',
+  // },
+]
 
 export const NavigationComponent = (props: any): JSX.Element => {
-  const [opened, { open, close }] = useDisclosure(false);
-  const theme = useMantineTheme();
-
-  const label = opened ? "Close navigation" : "Open navigation";
+  const [opened, { open, close }] = useDisclosure(false)
+  const theme = useMantineTheme()
 
   const anchors = React.useMemo(() => {
     return Links.map((item, index) => (
@@ -65,40 +63,43 @@ export const NavigationComponent = (props: any): JSX.Element => {
         label={<StyledLink to={item.href}>{item.title}</StyledLink>}
         key={index}
         sx={{
-          color: "white",
-          borderRadius: "0.5em",
-          ":hover": {
-            background: rgba(theme.colors.gold[0], 0.5),
-            textDecoration: "none",
-            backdropFilter:
-              "blur(4px) saturate(190%) contrast(70%) brightness(80%)",
+          borderRadius: '0.125em',
+          opacity: 0.7,
+          transition: 'all 0.125s ease',
+          ':hover': {
+            background: rgba(theme.colors.evergreen[0], 0.12),
+            textDecoration: 'none',
+            opacity: 1,
+          },
+          '*': {
+            color: theme.colors.gold[0],
           },
         }}
       ></NavLink>
-    ));
-  }, [Links]);
+    ))
+  }, [Links])
 
   return (
-    <>
-      <BannerComponent />
+    <Box sx={{ zIndex: 100, position: 'relative', top: 0 }}>
+      {/* <BannerComponent /> */}
       <Header
         height={60}
-        p="xs"
+        // p="xs"
         sx={{
-          position: "sticky",
+          position: 'sticky',
           top: 0,
           boxShadow: theme.shadows.lg,
           backgroundColor: theme.black,
           color: theme.white,
           borderBottom: 0,
-          paddingLeft: "32px !important",
-          paddingRight: "32px !important",
-          display: "flex",
-          alignItems: "center",
-          gap: "1em",
+          paddingLeft: '32px !important',
+          paddingRight: '32px !important',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1em',
         }}
       >
-        <Drawer.Root opened={opened} onClose={close}>
+        {/* <Drawer.Root opened={opened} onClose={close}>
           <Drawer.Overlay
             sx={{
               opacity: "0.3 !important",
@@ -142,7 +143,7 @@ export const NavigationComponent = (props: any): JSX.Element => {
                   >
                     <StaticImage
                       src="../../images/logo/timbers_sc.logo.black.no_padding.png"
-                      alt="Random image"
+                      alt="Logo"
                       height={68}
                     />
                   </Box>
@@ -152,31 +153,31 @@ export const NavigationComponent = (props: any): JSX.Element => {
               <Drawer.Body>{anchors}</Drawer.Body>
             </Box>
           </Drawer.Content>
-        </Drawer.Root>
+        </Drawer.Root> */}
 
-        <Burger
+        {/* <Burger
           opened={false}
           onClick={open}
           aria-label={label}
           color={theme.colors.gold[0]}
-        />
+        /> */}
 
         <Box
           sx={{
             backgroundColor: theme.black,
             boxShadow: theme.shadows.lg,
-            padding: "0 1em 1em",
-            display: "inline-block",
-            borderRadius: " 0 0 64px 64px",
-            transform: "translateY(40%)",
-            "*": {
-              transition: "none !important",
+            padding: '0 1em 1em',
+            display: 'inline-block',
+            borderRadius: ' 0 0 64px 64px',
+            transform: 'translateY(40%)',
+            '*': {
+              transition: 'none !important',
             },
           }}
         >
           <StaticImage
             src="../../images/logo/timbers_sc.logo.black.no_padding.png"
-            alt="Random image"
+            alt="Logo"
             height={124}
           />
         </Box>
@@ -184,7 +185,25 @@ export const NavigationComponent = (props: any): JSX.Element => {
         <Box>
           <BreadcrumbsComponent />
         </Box>
+
+        <Box
+          sx={{
+            color: theme.colors.dark[6],
+            fontSize: '1.25em',
+          }}
+        >
+          |
+        </Box>
+
+        <Box
+          sx={{
+            display: 'inline-flex',
+            height: '100%',
+          }}
+        >
+          {anchors}
+        </Box>
       </Header>
-    </>
-  );
-};
+    </Box>
+  )
+}

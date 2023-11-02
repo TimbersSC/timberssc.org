@@ -8,6 +8,6 @@ router.get('/', async (req: Request, res: Response) => {
   res.status(200).json('Health check');
 });
 
-router.use('/v1', v1);
+router.use('', v1);
 
 export default router;

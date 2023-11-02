@@ -1,6 +1,6 @@
-import { DynamoDB } from '@aws-sdk/client-dynamodb'
+import { DynamoDB } from '@aws-sdk/client-dynamodb';
 
-const config = { region: 'us-east-2' }
+const config = { region: 'us-east-2' };
 
 export const client = new DynamoDB({
   ...config,
@@ -9,4 +9,4 @@ export const client = new DynamoDB({
     sslEnabled: false,
     region: 'local',
   }),
-})
+});

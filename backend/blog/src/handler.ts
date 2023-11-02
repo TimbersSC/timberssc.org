@@ -1,17 +1,10 @@
 import express from 'express';
-import serverless from "serverless-http";
-import { customDomainReroute } from '@turinggroup/serverless-express-custom-domain-middleware';
+import serverless from 'serverless-http';
 import cors from 'cors';
 
 import routes from './routes';
 
-import {
-  errorHandler,
-  logErrors,
-  clientErrorHandler,
-  Authorizer,
-  LogRequest,
-} from './utils';
+import { errorHandler, logErrors, clientErrorHandler } from './utils';
 
 export const app = express();
 
@@ -22,11 +15,8 @@ app.use(
     allowedHeaders: '*',
   })
 );
-// app.use(customDomainReroute);
 
 app.use(express.json());
-// app.use(Authorizer(SCOPES));
-app.use(LogRequest);
 
 app.use('/', routes);
 
