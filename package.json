@@ -1,14 +1,8 @@
 {
   "private": true,
-<<<<<<< HEAD
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "<a alt=\"Nx logo\" href=\"https://nx.dev\" target=\"_blank\" rel=\"noreferrer\"><img src=\"https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png\" width=\"45\"></a>",
-=======
   "name": "timberssc.org",
   "version": "1.0.0",
   "description": "Timbers Soccer Club official website.",
->>>>>>> 5a0aec9789185992a072431e63301e1b3c334a20
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,28 +19,19 @@
   },
   "homepage": "https://github.com/TheFerant/Blog#readme",
   "devDependencies": {
-<<<<<<< HEAD
-=======
     "@types/babel__core": "^7.20.2",
->>>>>>> 5a0aec9789185992a072431e63301e1b3c334a20
     "husky": "^8.0.3",
     "lerna": "^6.4.1",
     "prettier": "^2.8.8",
     "pretty-quick": "^3.1.3"
   },
   "workspaces": [
-<<<<<<< HEAD
-    "frontend/blog",
-    "backend/blog"
-  ],
-  "dependencies": {
-=======
     "frontend/landing",
     "backend/blog"
   ],
   "dependencies": {
     "gray-matter": "^4.0.3",
->>>>>>> 5a0aec9789185992a072431e63301e1b3c334a20
+    "react": "^18.2.0",
     "react-transition-group": "^4.4.5"
   }
 }

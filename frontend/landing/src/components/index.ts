@@ -1,0 +1,1 @@
+export { BgGradientCircle } from './bgGradientCircle';

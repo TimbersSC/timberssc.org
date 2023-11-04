@@ -5,15 +5,38 @@ import { Box, Text } from '@primer/react';
 import { BreadcrumbsDispatcherContext } from '@components/navigation/breadcrumbs';
 import { setDocumentTitle } from '@utils';
 
-const Partners = {
-  Platinum: [
+enum PartnerLevels {
+  Platinum,
+  Gold,
+  Silver,
+}
+
+const LevelSizes: {
+  [key in PartnerLevels]: { maxWidth: string; maxHeight: string };
+} = {
+  [PartnerLevels.Platinum]: {
+    maxHeight: '512px',
+    maxWidth: '512px',
+  },
+  [PartnerLevels.Gold]: {
+    maxHeight: '256px',
+    maxWidth: '256px',
+  },
+  [PartnerLevels.Silver]: {
+    maxHeight: '128px',
+    maxWidth: '128px',
+  },
+};
+
+const Partners: { [key in PartnerLevels]: any[] } = {
+  [PartnerLevels.Platinum]: [
     {
       name: 'Riki',
       logo: 'RIKI_LOGO.png',
       url: '//rikispirits.com/',
     },
   ],
-  Gold: [
+  [PartnerLevels.Gold]: [
     {
       name: 'Park Burger',
       logo: 'Ferant_logo.png',
@@ -25,9 +48,9 @@ const Partners = {
       url: '//eatbirdcall.com/',
     },
   ],
-  Silver: [
+  [PartnerLevels.Silver]: [
     {
-      name: 'Riki',
+      name: 'Fast Signs of Lakewood',
       logo: 'RIKI_LOGO.png',
       url: '',
     },
@@ -35,6 +58,11 @@ const Partners = {
       name: 'Ferant',
       logo: 'Ferant_logo.png',
       url: '//ferant.io',
+    },
+    {
+      name: 'SetGK',
+      logo: 'RIKI_LOGO.png',
+      url: '',
     },
   ],
 };
@@ -60,6 +88,7 @@ export const PartnersPage = () => {
         maxWidth: '1335px',
         padding: ['3em 1em', '2em 0'],
         mx: 'auto',
+        mb: 4,
       }}
     >
       <Text
@@ -78,20 +107,18 @@ export const PartnersPage = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
+          gap: 8,
         }}
       >
         {Object.values(Partners).map((value, index) => {
           return (
             <Box
               sx={{
-                // display: 'flex',
-                // flexDirection: 'row',
-                // justifyContent: 'center',
-                // alignItems: 'center',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, 1fr)',
-                gridTemplateRows: 'repeat(1, 500px)',
-                gap: '15px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 4,
               }}
             >
               {value.map((val) => {
@@ -100,7 +127,8 @@ export const PartnersPage = () => {
                     as='img'
                     src={require('@public/images/partners/' + val.logo)}
                     sx={{
-                      height: `100%`,
+                      maxHeight: (LevelSizes as any)[index].maxHeight,
+                      maxWidth: (LevelSizes as any)[index].maxWidth,
                     }}
                   ></Box>
                 );

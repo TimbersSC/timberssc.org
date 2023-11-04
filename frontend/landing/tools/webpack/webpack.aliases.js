@@ -15,6 +15,7 @@ module.exports = createWebpackAliases({
   '@utils/*': './src/utils/*',
   '@core/*': './src/core/*',
   '@components/*': 'src/components/*',
+  '@components': 'src/components/index.ts',
   '@shared/*': './src/shared/*',
   '@constants': './src/components/constants.tsx',
 });

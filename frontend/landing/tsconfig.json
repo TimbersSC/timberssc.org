@@ -4,11 +4,7 @@
     "allowJs": false,
     "target": "ES6",
     "module": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "esModuleInterop": false,
@@ -22,62 +18,26 @@
     "experimentalDecorators": true,
     "downlevelIteration": true,
     "paths": {
-      "@assets/*": [
-        "./src/assets/*"
-      ],
-      "@config": [
-        "./src/config.tsx"
-      ],
-      "@utils": [
-        "src/utils/index.ts"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@core/*": [
-        "./src/core/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@shared/*": [
-        "./src/shared/*"
-      ],
-      "@constants": [
-        "src/components/constants.tsx"
-      ],
+      "@assets/*": ["./src/assets/*"],
+      "@config": ["./src/config.tsx"],
+      "@utils": ["src/utils/index.ts"],
+      "@utils/*": ["./src/utils/*"],
+      "@core/*": ["./src/core/*"],
+      "@components/*": ["./src/components/*"],
+      "@components": ["./src/components/index.ts"],
+      "@shared/*": ["./src/shared/*"],
+      "@constants": ["src/components/constants.tsx"],
       // Polyfills
-      "crypto": [
-        "./node_modules/crypto-browserify"
-      ],
-      "stream": [
-        "./node_modules/stream-browserify"
-      ],
-      "assert": [
-        "./node_modules/assert"
-      ],
-      "http": [
-        "./node_modules/stream-http"
-      ],
-      "https": [
-        "./node_modules/https-browserify"
-      ],
-      "os": [
-        "./node_modules/os-browserify"
-      ],
-      "tls": [
-        "./node_modules/https-browserify"
-      ],
-      "net": [
-        "./node_modules/os-browserify"
-      ]
+      "crypto": ["./node_modules/crypto-browserify"],
+      "stream": ["./node_modules/stream-browserify"],
+      "assert": ["./node_modules/assert"],
+      "http": ["./node_modules/stream-http"],
+      "https": ["./node_modules/https-browserify"],
+      "os": ["./node_modules/os-browserify"],
+      "tls": ["./node_modules/https-browserify"],
+      "net": ["./node_modules/os-browserify"]
     }
   },
-  "include": [
-    "src/**/*",
-    "tools/**/*"
-  ],
-  "exclude": [
-    "node_modules/**/*"
-  ]
+  "include": ["src/**/*", "tools/**/*"],
+  "exclude": ["node_modules/**/*"]
 }

@@ -1,1 +1,0 @@
-export { markedExtended } from './marked';

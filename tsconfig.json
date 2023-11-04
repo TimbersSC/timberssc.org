@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "jsx": "react-jsx",
     "allowJs": false,
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "outDir": "dist",
-    "strict": true,
-    "lib": [
-      "esnext"
-    ],
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "moduleResolution": "Node",
+    "target": "ES6",
+    "module": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
-    "disableSourceOfProjectReferenceRedirect": false,
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": false,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true
   },
+  "exclude": ["node_modules/**/*"]
 }
