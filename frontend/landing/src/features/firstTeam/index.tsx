@@ -1,13 +1,15 @@
 import { useContext, useEffect } from 'react';
 
 import { Box, Text, useTheme } from '@primer/react';
+import { darken, lighten } from 'polished';
 
 import { BreadcrumbsDispatcherContext } from '@components/navigation/breadcrumbs';
 import { setDocumentTitle } from '@utils';
+// @ts-ignore
+import bg from '@public/images/bg/bg.webp';
 
 import { Players } from './rosterData';
 import { FirstTeam$PlayerCard } from './playerCard';
-import { darken, lighten } from 'polished';
 
 export const FirstTeamPage = () => {
   const dispatch = useContext(BreadcrumbsDispatcherContext);
@@ -27,15 +29,19 @@ export const FirstTeamPage = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        bg: darken(0.1, theme.colors.ansi.green),
-      }}
-    >
+    <Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.2,
+          backgroundImage: `url(${bg})`,
+        }}
+      ></Box>
       <Box
         sx={{
           maxWidth: '1335px',
-          color: lighten(0.5, theme.colors.ansi.yellow),
+          color: 'gold',
           padding: ['3em 1em', '2em 0'],
           mx: 'auto',
         }}

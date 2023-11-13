@@ -7,6 +7,7 @@ import {
   CalendarIcon,
   PeopleIcon,
   GlobeIcon,
+  GiftIcon,
 } from '@primer/octicons-react';
 
 import { NoMatch } from '../../features/404';
@@ -55,12 +56,18 @@ export const routes: CustomRouteOptions[] = [
     icon: <GlobeIcon />,
     element: <PartnersPage />,
   },
+  // {
+  //   path: '/schedule',
+  //   name: 'Schedule',
+  //   displayNav: true,
+  //   icon: <CalendarIcon />,
+  //   element: <SchedulePage />,
+  // },
   {
-    path: '/schedule',
-    name: 'Schedule',
+    path: 'https://diaza.com/collections/timbers',
+    name: 'Shop gear',
     displayNav: true,
-    icon: <CalendarIcon />,
-    element: <SchedulePage />,
+    icon: <GiftIcon />,
   },
   {
     path: '*',

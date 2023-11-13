@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import {
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Box, Text, useTheme } from '@primer/react';
 import { darken, lighten, rgba } from 'polished';
@@ -61,6 +67,7 @@ export const FirstTeam$PlayerCard = (props: Props) => {
   const { first, last, position, number } = props;
 
   const { theme } = useTheme();
+  const nodeRef = useRef(null);
 
   const changePosition = useCallback((position: string) => {
     switch (position) {
@@ -77,8 +84,41 @@ export const FirstTeam$PlayerCard = (props: Props) => {
     }
   }, []);
 
+  const glowRef = useRef();
+
+  const rotateToMouse = (e: any) => {
+    const bounds = nodeRef.current.getBoundingClientRect();
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const leftX = mouseX - bounds.x;
+    const topY = mouseY - bounds.y;
+    const center = {
+      x: leftX - bounds.width / 2,
+      y: topY - bounds.height / 2,
+    };
+
+    if (glowRef.current) {
+      (glowRef.current as HTMLElement).style.backgroundImage = `
+        radial-gradient(
+          circle at
+          ${center.x * 2 + bounds.width / 2}px
+          ${center.y * 2 + bounds.height / 2}px,
+          #ffffff55,
+          #0000000f
+        )
+      `;
+    }
+  };
+  const removeListener = () => {
+    nodeRef.current.style.transform = '';
+    nodeRef.current.style.background = '';
+  };
+
   return (
     <Box
+      ref={nodeRef}
+      onMouseLeave={removeListener}
+      onMouseMove={rotateToMouse}
       sx={{
         position: 'relative',
         background: '#fff',
@@ -87,9 +127,11 @@ export const FirstTeam$PlayerCard = (props: Props) => {
         maxWidth: '445px',
         boxShadow: 'shadow.medium',
         aspectRatio: '1/1',
-
+        borderRadius: 2,
+        border: '1px solid',
+        borderColor: 'border.muted',
         ':hover': {
-          backgroundColor: lighten(0.1, theme.colors.ansi.green),
+          backgroundColor: 'green',
           color: '#fff !important',
           svg: {
             fill: '#Fff',
@@ -99,6 +141,18 @@ export const FirstTeam$PlayerCard = (props: Props) => {
         ...GenericStyles,
       }}
     >
+      <Box
+        ref={glowRef}
+        sx={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          left: 0,
+          top: 0,
+          backgroundImage:
+            'radial-gradient(circle at 50% -20%, #ffffff22, #0000000f)',
+        }}
+      />
       <Box
         sx={{
           position: 'absolute',
@@ -132,7 +186,7 @@ export const FirstTeam$PlayerCard = (props: Props) => {
       </Box>
       <Box
         sx={{
-          color: darken(0.1, theme.colors.ansi.green),
+          color: 'green',
           position: 'absolute',
           left: '32px',
           bottom: '45px',
@@ -158,7 +212,7 @@ export const FirstTeam$PlayerCard = (props: Props) => {
           </Text>
           <Text
             sx={{
-              color: lighten(0.5, theme.colors.ansi.yellow),
+              color: 'gold',
               fontSize: '2em',
               fontWeight: 'bold',
               ...GenericStyles,
@@ -170,7 +224,7 @@ export const FirstTeam$PlayerCard = (props: Props) => {
         <Box>
           <Text
             sx={{
-              color: darken(0.1, theme.colors.ansi.green),
+              color: 'green',
               ...GenericStyles,
             }}
           >

@@ -32,25 +32,26 @@ export const SubscribeComponent = () => {
   const [unread, setUnread] = useState(true);
 
   return (
-    <Tooltip
-      aria-label={`Get the latest updates with Timbers SC`}
-      direction='sw'
-    >
-      <Button
-        leadingIcon={() => (
-          <>
-            <StyledOcticon icon={InboxIcon} sx={{ bg: 'transparent' }} />
-            <ReadIcon unread={unread}></ReadIcon>
-          </>
-        )}
-        aria-labelledby='Notifications'
-        onClick={() => {
-          Toast.warning('Not implemented yet');
-        }}
-        sx={{ position: 'relative', ...ButtonSX }}
-      >
-        Subscribe
-      </Button>
-    </Tooltip>
+    <></>
+    // <Tooltip
+    //   aria-label={`Get the latest updates with Timbers SC`}
+    //   direction='sw'
+    // >
+    //   <Button
+    //     leadingIcon={() => (
+    //       <>
+    //         <StyledOcticon icon={InboxIcon} sx={{ bg: 'transparent' }} />
+    //         <ReadIcon unread={unread}></ReadIcon>
+    //       </>
+    //     )}
+    //     aria-labelledby='Notifications'
+    //     onClick={() => {
+    //       Toast.warning('Not implemented yet');
+    //     }}
+    //     sx={{ position: 'relative', ...ButtonSX }}
+    //   >
+    //     Subscribe
+    //   </Button>
+    // </Tooltip>
   );
 };
